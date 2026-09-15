@@ -1,7 +1,5 @@
 # gml-wavefunctioncollapse
-its wave function collapse in gml
-
-bitmaps only
+its wave function collapse in gml (images only, no tiles)
 
 YYC and GMRT compatible, seems to be fastest with GMRT
 
