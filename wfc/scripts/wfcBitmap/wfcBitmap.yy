@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"wfcBitmap",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"wfcBitmap",
+  "parent":{
+    "name":"LIBRARY",
+    "path":"folders/LIBRARY.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

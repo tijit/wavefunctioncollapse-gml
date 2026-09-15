@@ -1,0 +1,21 @@
+cave, maze, rooms, triangles
+
+see credits in readme.md here:
+
+https://github.com/mxgmn/WaveFunctionCollapse/tree/master
+
+
+---
+
+qud1, qud2
+
+copied examples from brian bucklew roguelike celebration talk
+
+https://www.youtube.com/watch?v=fnFj3dOKcIQ
+
+
+---
+
+sprGuyWarp
+
+I Wanna Be The Guy

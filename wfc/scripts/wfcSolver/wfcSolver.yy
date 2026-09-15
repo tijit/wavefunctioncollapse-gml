@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"wfcSolver",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"wfcSolver",
+  "parent":{
+    "name":"LIBRARY",
+    "path":"folders/LIBRARY.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

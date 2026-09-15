@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"wfcDebug",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"wfcDebug",
+  "parent":{
+    "name":"LIBRARY",
+    "path":"folders/LIBRARY.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
