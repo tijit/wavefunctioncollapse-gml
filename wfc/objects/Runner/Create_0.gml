@@ -120,7 +120,7 @@ beginTest(1);
 
 // calculate until reaching 1 / frameRate seconds, then draw current result
 fixedIterations = false;
-frameRate = 30;
+frameRate = 60;
 
 // if fixed iterations is true, uses number set here
 iterationsPerFrame = w;

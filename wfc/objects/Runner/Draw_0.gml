@@ -27,6 +27,7 @@ if (drawPossibilityCount) {
 			draw_text(px, py, $"{next}");
 		}
 	}
+	draw_set_font(fButton);
 }
 
 #endregion
