@@ -1,3 +1,4 @@
+/*
 if (overlayOpen) {
 	var root = layer_get_flexpanel_node("UILayer_1");
 	root = flexpanel_node_get_child(root, 0);

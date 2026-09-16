@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"flexpanelHelper",
+  "%Name":"menuHelpers",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"flexpanelHelper",
+  "name":"menuHelpers",
   "parent":{
     "name":"EXAMPLE",
     "path":"folders/EXAMPLE.yy",

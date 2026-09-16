@@ -16,9 +16,9 @@ h = 48;
 tutorialText  = "digits: choose example\n";
 tutorialText += "R: reset example\n"
 tutorialText += "Ctrl: toggle possibilities\n";
-tutorialText += "F1: open input settings\n";
+tutorialText += "r-click: edit parameters\n";
 tutorialText += "L: load custom image file\n";
-tutorialText += "custom files are example zero";
+tutorialText += "stores in example [0]";
 
 surf = undefined;
 

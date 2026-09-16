@@ -28,9 +28,9 @@ if (keyboard_check_pressed(ord("L"))) {
 	}
 }
 
-if (keyboard_check_pressed(vk_f1)) {
-	overlayOpen = !overlayOpen
-	show_debug_overlay(overlayOpen);
+if (mouse_check_button_pressed(mb_right)) {
+	spawnRightClickMenu(N, plist.periodic, wave.periodic);
+	exit;
 }
 
 #endregion
