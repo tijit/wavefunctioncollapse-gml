@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"loadExternalImage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"loadExternalImage",
+  "parent":{
+    "name":"EXAMPLE",
+    "path":"folders/EXAMPLE.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"menuHelpers",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"menuHelpers",
+  "parent":{
+    "name":"EXAMPLE",
+    "path":"folders/EXAMPLE.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -4,6 +4,10 @@ autorun = false;
 runCount = 0;
 autorunTrials = 100;
 
+overlayOpen = false;
+
+global.__file_custom = undefined;
+
 #region data
 
 w = 48;
@@ -11,7 +15,10 @@ h = 48;
 
 tutorialText  = "digits: choose example\n";
 tutorialText += "R: reset example\n"
-tutorialText += "Ctrl: toggle possibilities";
+tutorialText += "Ctrl: toggle possibilities\n";
+tutorialText += "r-click: edit parameters\n";
+tutorialText += "L: load custom image file\n";
+tutorialText += "stores in example [0]";
 
 surf = undefined;
 
@@ -113,7 +120,7 @@ beginTest(1);
 
 // calculate until reaching 1 / frameRate seconds, then draw current result
 fixedIterations = false;
-frameRate = 30;
+frameRate = 60;
 
 // if fixed iterations is true, uses number set here
 iterationsPerFrame = w;

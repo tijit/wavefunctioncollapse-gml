@@ -1,6 +1,6 @@
 draw_set_colour(c_white);
-draw_set_font(fDebug);
-var tw,th,tscale=2;
+draw_set_font(fButton);
+var tw,th,tscale=1;
 
 #region draw solution
 
@@ -17,6 +17,7 @@ draw_surface_ext(surf, 0, 0, drawScale, drawScale, 0, c_white, 1);
 #region if enabled, draw number of possibilities for each cell
 
 if (drawPossibilityCount) {
+	draw_set_font(fDebug);
 	for (var i = 0; i < wave.size; i++) {
 		var px = (i % wave.w) * drawScale;
 		var py = (i div wave.w) * drawScale;
@@ -26,6 +27,7 @@ if (drawPossibilityCount) {
 			draw_text(px, py, $"{next}");
 		}
 	}
+	draw_set_font(fButton);
 }
 
 #endregion

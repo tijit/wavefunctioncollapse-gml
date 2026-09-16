@@ -1,4 +1,5 @@
 #region input
+
 if (keyboard_check_pressed(vk_control)) {
 	drawPossibilityCount = !drawPossibilityCount;
 }
@@ -14,6 +15,22 @@ for (var i = 0; i < array_length(tests); i++) {
 		beginTest(i);
 		exit;
 	}
+}
+
+if (keyboard_check_pressed(ord("L"))) {
+	if (loadExternalImage()) {
+		tests[0] = {
+			spr: global.__file_custom,
+		};
+		testIndex = -1; // force refetch of image
+		beginTest(0);
+		exit;
+	}
+}
+
+if (mouse_check_button_pressed(mb_right)) {
+	spawnRightClickMenu(N, plist.periodic, wave.periodic);
+	exit;
 }
 
 #endregion
