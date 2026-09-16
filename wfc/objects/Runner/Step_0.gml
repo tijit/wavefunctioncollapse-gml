@@ -1,4 +1,5 @@
 #region input
+
 if (keyboard_check_pressed(vk_control)) {
 	drawPossibilityCount = !drawPossibilityCount;
 }
@@ -14,6 +15,22 @@ for (var i = 0; i < array_length(tests); i++) {
 		beginTest(i);
 		exit;
 	}
+}
+
+if (keyboard_check_pressed(ord("L"))) {
+	if (loadExternalImage()) {
+		tests[0] = {
+			spr: global.__file_custom,
+		};
+		testIndex = -1; // force refetch of image
+		beginTest(0);
+		exit;
+	}
+}
+
+if (keyboard_check_pressed(vk_f1)) {
+	overlayOpen = !overlayOpen
+	show_debug_overlay(overlayOpen);
 }
 
 #endregion

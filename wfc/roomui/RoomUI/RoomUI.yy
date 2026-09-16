@@ -1,0 +1,24 @@
+{
+  "$GMRoomUI":"",
+  "%Name":"RoomUI",
+  "children":[
+    {"$GMRUILayer":"v1","%Name":"UILayer_1","alignItems":2,"children":[
+        {"$GMRFlexPanel":"","%Name":"FlexPanel_1","alignItems":1,"children":[
+            {"$GMRFlexPanel":"","%Name":"ButN","alignItems":2,"children":[],"flexDirection":0,"height":{"unit":1,"value":80.0,},"justifyContent":1,"name":"ButN","nodeColour":4290660594,"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":2,"value":100.0,},},
+            {"$GMRFlexPanel":"","%Name":"ButPeriodicIn","alignItems":2,"children":[],"flexDirection":0,"height":{"unit":1,"value":80.0,},"justifyContent":1,"name":"ButPeriodicIn","nodeColour":4290660594,"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":2,"value":100.0,},},
+            {"$GMRFlexPanel":"","%Name":"ButPeriodicOut","alignItems":2,"children":[],"flexDirection":0,"height":{"unit":1,"value":80.0,},"justifyContent":1,"name":"ButPeriodicOut","nodeColour":4290660594,"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":2,"value":100.0,},},
+            {"$GMRFlexPanel":"","%Name":"ButCurve","alignItems":2,"children":[],"flexDirection":0,"height":{"unit":1,"value":80.0,},"justifyContent":1,"name":"ButCurve","nodeColour":4290660594,"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":2,"value":100.0,},},
+          ],"flexDirection":0,"height":{"unit":1,"value":433.0,},"justifyContent":0,"marginLeft":{"unit":1,"value":515.0,},"name":"FlexPanel_1","nodeColour":4282970765,"paddingBottom":{"unit":1,"value":8.0,},"paddingLeft":{"unit":1,"value":8.0,},"paddingRight":{"unit":1,"value":8.0,},"paddingTop":{"unit":1,"value":8.0,},"resourceType":"GMRFlexPanel","resourceVersion":"2.0","width":{"unit":1,"value":306.0,},},
+      ],"flexDirection":0,"gridX":32,"gridY":32,"justifyContent":1,"name":"UILayer_1","nodeColour":4288213576,"resourceType":"GMRUILayer","resourceVersion":"2.0",},
+  ],
+  "locked":false,
+  "name":"RoomUI",
+  "parent":{
+    "name":"wfc",
+    "path":"wfc.yyp",
+  },
+  "resourceType":"GMRoomUI",
+  "resourceVersion":"2.0",
+  "viewspaceChildren":[],
+  "visible":true,
+}

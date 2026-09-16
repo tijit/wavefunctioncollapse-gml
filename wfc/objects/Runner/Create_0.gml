@@ -4,6 +4,10 @@ autorun = false;
 runCount = 0;
 autorunTrials = 100;
 
+overlayOpen = false;
+
+global.__file_custom = undefined;
+
 #region data
 
 w = 48;
@@ -11,7 +15,10 @@ h = 48;
 
 tutorialText  = "digits: choose example\n";
 tutorialText += "R: reset example\n"
-tutorialText += "Ctrl: toggle possibilities";
+tutorialText += "Ctrl: toggle possibilities\n";
+tutorialText += "F1: open input settings\n";
+tutorialText += "L: load custom image file\n";
+tutorialText += "custom files are example zero";
 
 surf = undefined;
 
