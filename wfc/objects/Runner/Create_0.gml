@@ -33,7 +33,7 @@ tests = [
 	{
 		spr: sprGuyWarp,
 		periodicInput: false,
-		curve: sqrt,
+		curve: __wfc_curve_sqrt,
 	},
 	{
 		spr: sprBox,

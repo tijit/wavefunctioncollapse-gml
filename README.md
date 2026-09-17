@@ -23,6 +23,8 @@ see `Runner` for advanced use & examples (the default when running, has on-scree
 
 see `example image sources` for example image sources
 
+web demo (cannot use custom images, unlike the binary in releases): [https://tijit.github.io/wfc/](https://tijit.github.io/wfc/)
+
 ---
 
 i kind of just wrote how i thought this would work in my head based on videos i watched, to see a good implementation go here: [https://github.com/mxgmn/WaveFunctionCollapse/tree/master](https://github.com/mxgmn/WaveFunctionCollapse/tree/master)
