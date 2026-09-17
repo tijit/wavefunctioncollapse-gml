@@ -119,5 +119,33 @@ function spawnRightClickMenu(N, periodicIn, periodicOut) {
 		childMenu: cm,
 	});
 	
+	// set output dimensions
+	
+	cm = [ ];
+	var sizes = [ 32, 48, 96, 160 ];
+	for (var i = 0; i < array_length(sizes); i++) {
+		var next = sizes[i];
+		array_push(cm, {
+			size: next,
+			text: $"{next}x{next}",
+			butIndex: i,
+			onClick: function() {
+				var val = self[$ "size"];
+				with (Runner) {
+					var ii = testIndex;
+					w = val;
+					h = val;
+					testIndex = -1;
+					beginTest(ii);
+				}
+			},
+		});
+	}
+	
+	array_push(dat, {
+		text: "output size ->",
+		childMenu: cm,
+	});
+	
 	spawnMenuButtons(mouse_x, mouse_y, dat);
 }
