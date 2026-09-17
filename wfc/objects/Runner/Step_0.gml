@@ -17,7 +17,7 @@ for (var i = 0; i < array_length(tests); i++) {
 	}
 }
 
-if (keyboard_check_pressed(ord("L"))) {
+if (!html5 && keyboard_check_pressed(ord("L"))) {
 	if (loadExternalImage()) {
 		tests[0] = {
 			spr: global.__file_custom,
@@ -26,11 +26,6 @@ if (keyboard_check_pressed(ord("L"))) {
 		beginTest(0);
 		exit;
 	}
-}
-
-if (mouse_check_button_pressed(mb_right)) {
-	spawnRightClickMenu(N, plist.periodic, wave.periodic);
-	exit;
 }
 
 #endregion

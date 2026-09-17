@@ -8,17 +8,21 @@ overlayOpen = false;
 
 global.__file_custom = undefined;
 
+html5 = (os_get_info() == -1);
+
 #region data
 
 w = 48;
 h = 48;
 
-tutorialText  = "digits: choose example\n";
-tutorialText += "R: reset example\n"
-tutorialText += "Ctrl: toggle possibilities\n";
-tutorialText += "r-click: edit parameters\n";
-tutorialText += "L: load custom image file\n";
-tutorialText += "stores in example [0]";
+tutorialText  = "digits: choose example";
+tutorialText += "\nR: reset example"
+tutorialText += "\nCtrl: toggle possibilities";
+tutorialText += "\nmouse click: edit parameters";
+if (!html5) {
+	tutorialText += "\nL: load custom image file";
+	tutorialText += "\nstores in example [0]";
+}
 
 surf = undefined;
 

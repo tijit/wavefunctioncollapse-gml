@@ -1,5 +1,5 @@
 if (onClick != undefined) {
-	if (hover && mouse_check_button_pressed(mb_left)) {
+	if (hover && (mouse_check_button_pressed(mb_right) || mouse_check_button_pressed(mb_left))) {
 		onClick();
 		
 		instance_destroy(ContextButton);
