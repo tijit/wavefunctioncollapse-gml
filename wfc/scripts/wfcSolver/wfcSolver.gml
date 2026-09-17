@@ -472,14 +472,12 @@ function __wfc_curve_constant(n) {
 	return 1;
 }
 
-function __wfc_curve_golden(n) {
-	// 1 / PHI
-	static exponent = 2 / (1 + sqrt(5));
-	return power(n, exponent);
-}
-
 function __wfc_curve_logarithmic(n) {
 	return log2(n);
+}
+
+function __wfc_curve_sqrt(n) {
+	return sqrt(n);
 }
 
 /// @desc  copy b onto the end of a, returns a

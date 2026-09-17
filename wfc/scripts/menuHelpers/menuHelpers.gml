@@ -19,7 +19,7 @@ function spawnMenuButtons(x0, y0, list, w=256, h=32, gap=2, menuDepth=0, xsgn=un
 	for (var i = 0; i < nlist; i++) {
 		var next = list[i];
 		
-		instance_create_layer(xx, yy, "Instances", ContextButton, {
+		instance_create_layer(xx, yy, "Buttons", ContextButton, {
 			text: next[$ "text"],
 			xsgn,
 			ysgn,
@@ -95,17 +95,21 @@ function spawnRightClickMenu(N, periodicIn, periodicOut) {
 	with (Runner) {
 		desc = curveDescriptions;
 	}
-	var keys = ds_map_keys_to_array(desc);
-	for (var i = 0; i < array_length(keys); i++) {
-		if (keys[i] != undefined) {
+	var funcs = [ __wfc_curve_linear, __wfc_curve_constant, __wfc_curve_logarithmic, __wfc_curve_sqrt ];
+	//var keys = ds_map_keys_to_array(desc);
+	for (var i = 0; i < array_length(funcs); i++) {
+		var str = desc[? funcs[i]];
+		if (funcs[i] != undefined) {
 			array_push(cm, {
-				text: $"{desc[? keys[i]]}",
+				text: $"{str}",
 				butIndex: i,
+				mkey: funcs[i],
+				mdesc: str,
 				onClick: function() {
-					var val = self[$ "butIndex"];
+					var val = self[$ "mkey"];
 					with (Runner) {
 						var ii = testIndex;
-						tests[ii].curve = ds_map_keys_to_array(curveDescriptions)[val];
+						tests[ii].curve = val;
 						testIndex = -1;
 						beginTest(ii);
 					}
@@ -116,6 +120,34 @@ function spawnRightClickMenu(N, periodicIn, periodicOut) {
 	
 	array_push(dat, {
 		text: "weight curve ->",
+		childMenu: cm,
+	});
+	
+	// set output dimensions
+	
+	cm = [ ];
+	var sizes = [ 32, 48, 96, 160 ];
+	for (var i = 0; i < array_length(sizes); i++) {
+		var next = sizes[i];
+		array_push(cm, {
+			size: next,
+			text: $"{next}x{next}",
+			butIndex: i,
+			onClick: function() {
+				var val = self[$ "size"];
+				with (Runner) {
+					var ii = testIndex;
+					w = val;
+					h = val;
+					testIndex = -1;
+					beginTest(ii);
+				}
+			},
+		});
+	}
+	
+	array_push(dat, {
+		text: "output size ->",
 		childMenu: cm,
 	});
 	
