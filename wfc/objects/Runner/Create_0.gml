@@ -6,6 +6,8 @@ autorunTrials = 100;
 
 overlayOpen = false;
 
+generateSymmetries = WFC_SYMMETRIES.NONE;
+
 global.__file_custom = undefined;
 
 html5 = (os_get_info() == -1);
@@ -101,7 +103,7 @@ beginTest = function(ind=max(testIndex, 0)) {
 		sw = sprite_get_width(sprite);
 		sh = sprite_get_height(sprite);
 		
-		plist = wfcReadImage(sprite, periodicInput, N);
+		plist = wfcReadImage(sprite, periodicInput, N, generateSymmetries);
 		possibilityCount = plist.npatterns;
 		
 		runCount = 0;

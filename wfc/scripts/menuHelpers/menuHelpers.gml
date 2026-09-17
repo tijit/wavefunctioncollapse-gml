@@ -151,5 +151,32 @@ function spawnRightClickMenu(N, periodicIn, periodicOut) {
 		childMenu: cm,
 	});
 	
+	// symmetries
+	
+	var flags = [ 0, 1, 2, 3, 4, 7 ];
+	var names = [ "none", "mirror X", "mirror Y", "mirror X+Y", "rotation", "all" ];
+	
+	cm = [ ];
+	for (var i = 0; i < array_length(flags); i++) {
+		array_push(cm, {
+			flag: flags[i],
+			text: names[i],
+			onClick: function() {
+				var val = self[$ "flag"];
+				with (Runner) {
+					var ii = testIndex;
+					generateSymmetries = val;
+					testIndex = -1;
+					beginTest(ii);
+				}
+			},
+		});
+	}
+	
+	array_push(dat, {
+		text: "symmetries ->",
+		childMenu: cm,
+	});
+	
 	spawnMenuButtons(mouse_x, mouse_y, dat);
 }
