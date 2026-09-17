@@ -95,17 +95,21 @@ function spawnRightClickMenu(N, periodicIn, periodicOut) {
 	with (Runner) {
 		desc = curveDescriptions;
 	}
-	var keys = ds_map_keys_to_array(desc);
-	for (var i = 0; i < array_length(keys); i++) {
-		if (keys[i] != undefined) {
+	var funcs = [ __wfc_curve_linear, __wfc_curve_constant, __wfc_curve_logarithmic, sqrt ];
+	//var keys = ds_map_keys_to_array(desc);
+	for (var i = 0; i < array_length(funcs); i++) {
+		var str = desc[? funcs[i]];
+		if (funcs[i] != undefined) {
 			array_push(cm, {
-				text: $"{desc[? keys[i]]}",
+				text: $"{str}",
 				butIndex: i,
+				mkey: funcs[i],
+				mdesc: str,
 				onClick: function() {
-					var val = self[$ "butIndex"];
+					var val = self[$ "mkey"];
 					with (Runner) {
 						var ii = testIndex;
-						tests[ii].curve = ds_map_keys_to_array(curveDescriptions)[val];
+						tests[ii].curve = val;
 						testIndex = -1;
 						beginTest(ii);
 					}
