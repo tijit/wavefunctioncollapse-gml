@@ -146,9 +146,8 @@ curveDescriptions = ds_map_create();
 curveDescriptions[? undefined] = "linear";
 curveDescriptions[? __wfc_curve_linear] = "linear";
 curveDescriptions[? __wfc_curve_constant] = "constant";
-curveDescriptions[? __wfc_curve_golden] = "n^(1/PHI)";
 curveDescriptions[? __wfc_curve_logarithmic] = "log base 2";
-curveDescriptions[? sqrt] = "square root";
+curveDescriptions[? __wfc_curve_sqrt] = "square root";
 
 #endregion
 
