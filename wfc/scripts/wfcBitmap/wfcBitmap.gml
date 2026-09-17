@@ -1,9 +1,18 @@
+enum WFC_SYMMETRIES {
+	NONE = 0,
+	MIRROR_X = 1,
+	MIRROR_Y = 2,
+	MIRROR_XY = 3,
+	ROTATE = 4,
+	ALL = 7,
+}
+
 /// @desc read a sprite asset and generate a PatternList
 /// @param {asset.gmsprite} spriteIndex sprite to use as input, does not support transparency
 /// @param {bool} [periodic] do pixels wrap around
 /// @param {real} [N] NxN pattern size (usually 3x3) used to determine adjacency
 /// @returns {struct.wfcPatternList} creates a pattern list which processes the NxN patterns
-function wfcReadImage(spriteIndex, periodic=false, N=3) {
+function wfcReadImage(spriteIndex, periodic=false, N=3, symmetries=WFC_SYMMETRIES.NONE) {
 	static surf = undefined;
 	static buff = buffer_create(128, buffer_grow, 1);
 	static map = ds_map_create();
@@ -67,7 +76,7 @@ function wfcReadImage(spriteIndex, periodic=false, N=3) {
 	
 	// build list of NxN patterns
 	
-	var plist = new wfcPatternList(grid, colours, N, periodic);
+	var plist = new wfcPatternList(grid, colours, N, periodic, symmetries);
 	
 	surface_free(surf); surf = undefined;
 	
@@ -84,13 +93,14 @@ function wfcReadImage(spriteIndex, periodic=false, N=3) {
 /// @param {array<constant.colour>} _colours 
 /// @param {real} _N 
 /// @param {bool} _periodic 
-function wfcPatternList(grid, _colours, _N, _periodic) constructor {
+function wfcPatternList(grid, _colours, _N, _periodic, _symmetries) constructor {
 	w = ds_grid_width(grid);
 	h = ds_grid_height(grid);
 	
 	N = _N;
 	colours = _colours;
 	periodic = _periodic;
+	symmetries = _symmetries;
 	
 	/* pattern:
 	{
@@ -155,6 +165,78 @@ function wfcPatternList(grid, _colours, _N, _periodic) constructor {
 			gridIndices[i][j] = ind;
 		}
 	}
+	
+	if (symmetries > 0) {
+		var sym = [ ];
+		for (var patind = 0; patind < array_length(patterns); patind++) {
+			var mx = (symmetries & WFC_SYMMETRIES.MIRROR_X) > 0;
+			var my = (symmetries & WFC_SYMMETRIES.MIRROR_Y) > 0;
+			var rot = (symmetries & WFC_SYMMETRIES.ROTATE) > 0;
+			
+			array_resize(sym, 0);
+			sym[0] = patterns[patind].arr;
+			if (mx) {
+				array_push(sym, mirrorPatternX(sym[0], N));
+			}
+			if (my) {
+				var i = 0; repeat (array_length(sym)) {
+					array_push(sym, mirrorPatternY(sym[i], N));
+					i++;
+				}
+			}
+			if (rot) {
+				if (!mx && !my) {
+					// 1 -> 4
+					repeat(3) {
+						array_push(sym, rotatePattern(array_last(sym), N));
+					}
+				}
+				else if (mx ^^ my) {
+					// 2 -> 8
+					var i = 0; repeat(3) {
+						array_push(sym, rotatePattern(sym[i], N));
+						array_push(sym, rotatePattern(sym[i*2+1], N));
+						i++;
+					}
+				}
+				else if (mx && my) {
+					// 4 -> 8
+					var i = 0; repeat(4) {
+						array_push(sym, rotatePattern(sym[i], N));
+						i++;
+					}
+				}
+			}
+			
+			// same as above but for symmetries. sorry for copypaste crimes
+			for (var i = 1; i < array_length(sym); i++) {
+				var next = sym[i];
+				var ind = 0, match = false;
+				for (ind = 0; ind < array_length(patterns); ind++) {
+					var p2 = patterns[ind].arr;
+					if (array_equals(next, p2)) {
+						match = true;
+						weights[ind]++;
+						break;
+					}
+				}
+				
+				if (!match) {
+					ind = array_length(patterns);
+					array_push(patterns, {
+						arr: next,
+						index: ind,
+						north: [],
+						east: [],
+						south: [],
+						west: [],
+					});
+					weights[ind] = 1;
+				}
+			}
+		}
+	}
+	
 	wfcPrint($"pattern indices:");
 	wfcPrintArray2(gridIndices);
 	
@@ -230,6 +312,56 @@ function wfcPatternList(grid, _colours, _N, _periodic) constructor {
 	//buildStamps(3);
 }
 
+// (x,y) -> (N-x-1, y)
+function mirrorPatternX(pat, N, _out=array_create(N*N)) {
+	var x0, y0, ind0, x1, y1, ind1;
+	for (x0 = 0; x0 < N; x0++) {
+		for (y0 = 0; y0 < N; y0++) {
+			x1 = N-x0-1;
+			y1 = y0;
+			
+			ind0 = x0 + N*y0;
+			ind1 = x1 + N*y1;
+			
+			_out[ ind1 ] = pat[ ind0 ];
+		}
+	}
+	return _out;
+}
+
+// (x,y) -> (x, N-y-1)
+function mirrorPatternY(pat, N, _out=array_create(N*N)) {
+	var x0, y0, ind0, x1, y1, ind1;
+	for (x0 = 0; x0 < N; x0++) {
+		for (y0 = 0; y0 < N; y0++) {
+			x1 = x0;
+			y1 = N-y0-1;
+			
+			ind0 = x0 + N*y0;
+			ind1 = x1 + N*y1;
+			
+			_out[ ind1 ] = pat[ ind0 ];
+		}
+	}
+	return _out;
+}
+
+// (x,y) -> (N-y-1, x)
+function rotatePattern(pat, N, _out=array_create(N*N)) {
+	var x0, y0, ind0, x1, y1, ind1;
+	for (x0 = 0; x0 < N; x0++) {
+		for (y0 = 0; y0 < N; y0++) {
+			x1 = N-y0-1;
+			y1 = x0;
+			
+			ind0 = x0 + N*y0;
+			ind1 = x1 + N*y1;
+			
+			_out[ ind1 ] = pat[ ind0 ];
+		}
+	}
+	return _out;
+}
 
 // UNUSED
 // pre-computing stamps for complex patterns is far too expensive,
